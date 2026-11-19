@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>НМТ-Бінго · Підготовка до математики</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#ffffff; --bg2:#eef4ff;
+  --ink:#121826; --ink-soft:#4b5563; --muted:#6b7280;
+  --blue:#1530e8; --blue2:#4f7bf0; --link:#2563eb;
+  --tint:#e6effd; --tint-line:#b9d0f7; --chrome:#d3e3fa;
+  --gold:#f5c24c; --gold-ink:#3a2a00;
+  --done:#1d3fe0; --done-ink:#ffffff;
+  --win:#f5c24c; --card:#ffffff;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0c1222; --bg2:#101a33;
+    --ink:#eef2fb; --ink-soft:#c3cbe0; --muted:#94a0bb;
+    --blue:#2f49f0; --blue2:#5b82f5; --link:#7da2ff;
+    --tint:#16223f; --tint-line:#2b3f6e; --chrome:#17264a;
+    --gold:#f5c24c; --gold-ink:#2a1e00;
+    --done:#3456f2; --done-ink:#ffffff; --card:#111a30;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0c1222; --bg2:#101a33;
+  --ink:#eef2fb; --ink-soft:#c3cbe0; --muted:#94a0bb;
+  --blue:#2f49f0; --blue2:#5b82f5; --link:#7da2ff;
+  --tint:#16223f; --tint-line:#2b3f6e; --chrome:#17264a;
+  --gold:#f5c24c; --gold-ink:#2a1e00;
+  --done:#3456f2; --done-ink:#ffffff; --card:#111a30;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  margin:0; min-height:100vh;
+  font-family:"Golos Text",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(180deg,var(--bg) 0%,var(--bg) 55%,var(--bg2) 100%);
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1200px; margin:0 auto; padding:20px clamp(14px,3vw,46px) 40px}
+
+/* top chrome */
+.topbar{
+  display:flex; align-items:center; justify-content:space-between; gap:12px;
+  background:var(--chrome); border-radius:999px; padding:12px 18px 12px 18px;
+}
+.brandrow{display:flex; align-items:center; gap:14px}
+.dots{display:flex; gap:6px}
+.dots i{width:10px;height:10px;border-radius:50%;display:block}
+.dots i:nth-child(1){background:#ef5b55}.dots i:nth-child(2){background:#f5c24c}.dots i:nth-child(3){background:#3cc35a}
+.logo{font-weight:800; font-size:26px; letter-spacing:-.04em; color:var(--ink); line-height:1}
+.logo b{display:inline-block; width:.62em; height:.62em; border:.15em solid currentColor; border-radius:50%; vertical-align:-.02em; margin:0 .02em; position:relative}
+.logo b::after{content:""; position:absolute; inset:.08em; border-radius:50%; background:currentColor; clip-path:inset(0 0 0 50%)}
+.toplabel{font-weight:600; font-size:15px}
+
+.layout{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.38fr); gap:28px; margin-top:16px}
+
+/* hero */
+.hero{
+  position:relative; overflow:hidden; border-radius:26px; min-height:150px;
+  background:linear-gradient(110deg,#1220e6 0%,#2f4ff0 55%,#5a86f2 100%);
+  color:#fff; padding:28px 26px;
+}
+.hero h1{margin:0; font-size:clamp(38px,5.2vw,56px); font-weight:800; letter-spacing:-.03em; line-height:1}
+.hero p{margin:10px 0 0; font-size:16px; font-weight:600}
+.hero p span{opacity:.35; font-style:italic; font-weight:400; margin-left:8px}
+.hero .deco{position:absolute; opacity:.3; font-style:italic; font-size:18px}
+.hero .dotrow{position:absolute; display:flex; gap:22px}
+.hero .dotrow i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.18)}
+.sparkle{position:absolute; color:#f5c24c}
+.minigrid{
+  position:absolute; right:22px; top:10px; width:128px; height:128px;
+  transform:rotate(6deg); display:grid; grid-template-columns:repeat(3,1fr); gap:6px;
+  padding:8px; border-radius:16px; background:rgba(255,255,255,.18);
+}
+.minigrid span{border-radius:8px; background:#fff; display:grid; place-items:center}
+.minigrid span.l{background:#b4ccf6}
+.minigrid span.y{background:#f5c24c}
+.minigrid span.y::after{content:""; width:14px; height:7px; border-left:3px solid #1d33d8; border-bottom:3px solid #1d33d8; transform:rotate(-45deg) translate(1px,-2px)}
+.minigrid::after{content:""; position:absolute; left:50%; top:-4px; bottom:-4px; width:4px; margin-left:-2px; background:#ef6b5b; border-radius:2px; transform:rotate(3deg)}
+
+/* rules */
+.rules{
+  margin-top:14px; border:2px solid var(--blue2); border-radius:16px; padding:14px 18px;
+  display:flex; gap:14px; align-items:flex-start; font-size:16px; line-height:1.5; background:var(--card);
+}
+.rules .ico{font-size:30px; line-height:1}
+.rules strong{color:var(--link); font-weight:700}
+
+.stats{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px}
+.stat{
+  background:var(--tint); border:2px solid var(--tint-line); border-radius:16px;
+  padding:12px; text-align:center; color:var(--ink-soft); font-size:15px;
+}
+.stat b{color:var(--ink); font-size:26px; font-weight:800; margin-left:6px; vertical-align:-2px}
+
+/* result card */
+.result{margin-top:16px; border:2px solid var(--tint-line); border-radius:22px; overflow:hidden; background:var(--card)}
+.result .head{
+  background:linear-gradient(180deg,#1124e6 0%,#3d68f2 100%); color:#fff;
+  text-align:center; font-weight:700; font-size:18px; padding:14px;
+}
+.result .body{padding:18px 18px 14px}
+.rtop{display:flex; gap:16px; align-items:flex-start}
+.rgrid{display:grid; grid-template-columns:repeat(3,18px); gap:5px; flex:none; margin-top:4px}
+.rgrid i{width:18px;height:18px;border-radius:5px;border:2px solid var(--tint-line); background:var(--tint); transition:background .2s,border-color .2s}
+.rgrid i.on{background:var(--done); border-color:var(--done)}
+.rgrid i.on.win{background:var(--win); border-color:var(--win)}
+.rtitle{font-size:clamp(20px,2.4vw,26px); font-weight:800; color:var(--link); margin:0; letter-spacing:-.01em}
+.rsub{margin:4px 0 0; color:var(--muted); font-size:15px; line-height:1.4}
+.rstats{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:16px}
+.rstats div{background:var(--tint); border-radius:12px; text-align:center; padding:10px 6px; color:var(--muted); font-size:13px}
+.rstats b{display:block; color:var(--ink); font-size:22px; font-weight:800}
+.rfoot{display:flex; justify-content:space-between; align-items:center; margin-top:14px; gap:10px; flex-wrap:wrap}
+.rfoot .logo{font-size:18px}
+.rfoot small{color:var(--muted); font-size:13px}
+
+.clear{
+  margin-top:14px; width:100%; padding:14px; border-radius:16px; cursor:pointer;
+  background:var(--tint); border:2px solid var(--tint-line); color:var(--link);
+  font:700 17px "Golos Text",system-ui,sans-serif;
+}
+.clear:hover{border-color:var(--blue2)}
+
+/* board */
+.board{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; align-content:start}
+.cell{
+  position:relative; aspect-ratio:1/1; border-radius:20px; cursor:pointer;
+  background:var(--tint); border:2px solid var(--tint-line); color:var(--ink);
+  display:grid; place-items:center; padding:12px; text-align:center;
+  font:500 clamp(12px,1.25vw,15.5px)/1.35 "Golos Text",system-ui,sans-serif;
+  transition:background .18s,border-color .18s,color .18s,transform .12s;
+}
+.cell:hover{border-color:var(--blue2)}
+.cell:active{transform:scale(.98)}
+.cell.special{border-color:var(--gold); border-width:3px}
+.cell .badge{
+  position:absolute; top:-12px; left:50%; transform:translateX(-50%);
+  background:var(--gold); color:var(--gold-ink); font-size:12px; font-weight:700;
+  padding:3px 10px; border-radius:999px; white-space:nowrap;
+}
+.cell.on{background:var(--done); border-color:var(--done); color:var(--done-ink)}
+.cell.on.special{border-color:var(--gold)}
+.cell.on::after{
+  content:""; position:absolute; right:12px; bottom:14px; width:16px; height:8px;
+  border-left:3px solid currentColor; border-bottom:3px solid currentColor; transform:rotate(-45deg); opacity:.85;
+}
+.cell.win{box-shadow:0 0 0 3px var(--win) inset}
+:focus-visible{outline:3px solid var(--gold); outline-offset:3px}
+
+.toast{
+  position:fixed; left:50%; bottom:calc(20px + env(safe-area-inset-bottom,0px)); transform:translate(-50%,30px);
+  background:var(--gold); color:var(--gold-ink); font-weight:800; font-size:18px;
+  padding:12px 24px; border-radius:999px; opacity:0; pointer-events:none; transition:opacity .25s,transform .25s;
+}
+.toast.show{opacity:1; transform:translate(-50%,0)}
+
+@media (max-width:900px){
+  .layout{grid-template-columns:1fr}
+  .board{order:-1}
+  .side{display:contents}
+  .hero{order:-3}.rules{order:-2}
+  .stats,.result,.clear{order:1}
+  .cell{font-size:clamp(11px,3.3vw,15px); padding:8px; border-radius:16px}
+  .toplabel{font-size:13px}
+}
+@media (max-width:480px){
+  .minigrid{width:92px;height:92px;right:12px;top:auto;bottom:10px}
+  .board{gap:8px}
+  .cell .badge{font-size:10px; padding:2px 7px}
+  .cell.on::after{right:8px;bottom:8px;width:12px;height:6px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brandrow">
+      <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="logo" aria-label="znohub.">zn<b></b>hub.</div>
+    </div>
+    <div class="toplabel">Гра від куратора</div>
+  </header>
+
+  <main class="layout">
+    <div class="side">
+      <section class="hero">
+        <span class="dotrow" style="left:84px;top:30px" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="dotrow" style="left:140px;bottom:30px" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="deco" style="left:52%;top:30px" aria-hidden="true">π</span>
+        <span class="deco" style="left:46%;bottom:38px" aria-hidden="true">Σ</span>
+        <span class="sparkle" style="left:57%;top:46px;font-size:26px" aria-hidden="true">✦</span>
+        <span class="sparkle" style="right:10px;bottom:36px;font-size:18px;color:#fff" aria-hidden="true">✦</span>
+        <div class="minigrid" aria-hidden="true">
+          <span></span><span class="y"></span><span></span>
+          <span class="l"></span><span class="y"></span><span></span>
+          <span></span><span class="y"></span><span class="l"></span>
+        </div>
+        <h1>НМТ-Бінго</h1>
+        <p>Як я готуюсь<span>Σ</span></p>
+      </section>
+
+      <div class="rules">
+        <span class="ico" aria-hidden="true">📝</span>
+        <div>Натисни на кожну клітинку, яка <strong>хоч раз траплялася з тобою</strong>. Збери три в ряд – по горизонталі, вертикалі чи діагоналі – і отримай БІНГО!</div>
+      </div>
+
+      <div class="stats">
+        <div class="stat">Відмічено<b id="cnt">0/9</b></div>
+        <div class="stat">Бінго<b id="bng">0</b></div>
+      </div>
+
+      <section class="result" aria-live="polite">
+        <div class="head">Моє НМТ-Бінго</div>
+        <div class="body">
+          <div class="rtop">
+            <div class="rgrid" id="rgrid" aria-hidden="true"></div>
+            <div>
+              <h2 class="rtitle" id="rtitle">Ідеальний абітурієнт 🎯</h2>
+              <p class="rsub" id="rsub">Або ти ще просто не почав(-ла) готуватися</p>
+            </div>
+          </div>
+          <div class="rstats">
+            <div><b id="rcnt">0/9</b>звичок зібрано</div>
+            <div><b id="rbng">0</b>ліній бінго</div>
+          </div>
+          <div class="rfoot">
+            <div class="logo">zn<b></b>hub.</div>
+            <small>19.11.2026 · гра від куратора</small>
+          </div>
+        </div>
+      </section>
+
+      <button class="clear" id="clear" type="button">Очистити поле</button>
+    </div>
+
+    <section class="board" id="board" aria-label="Поле бінго"></section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status">БІНГО! 🎉</div>
+
+<script>
+const CELLS = [
+  "Відкрив(-ла) відеоурок «на 5 хвилин» – і опинився(-лася) в рекомендаціях через годину",
+  "Склав(-ла) ідеальний план підготовки на місяць – і не виконав(-ла) з нього жодного пункту",
+  "Гарно переписав(-ла) всі формули кольоровими ручками, але так і не розв’язав(-ла) жодної задачі",
+  "Відклав(-ла) складну тему «на потім» – і це «потім» досі не настало",
+  "Почав(-ла) готуватися «з понеділка» – вже кілька понеділків поспіль",
+  "Підглянув(-ла) у відповідь «тільки щоб перевірити хід» – ще до того, як розв’язав(-ла)",
+  "Порахував(-ла) свої бали за шкалою переведення ще до того, як перевірив(-ла) відповіді",
+  "Купив(-ла) збірник завдань, який досі лежить як новенький",
+  "Сказав(-ла) «ще одну задачку і спати» – і заснув(-ла) над підручником о другій ночі"
+];
+const SPECIAL = 4;
+const LINES = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+const TIERS = [
+  {max:0, t:"Ідеальний абітурієнт 🎯", s:"Або ти ще просто не почав(-ла) готуватися"},
+  {max:2, t:"Майже дисциплінований 📏", s:"Пару разів спіткнувся(-лася), але курс тримаєш"},
+  {max:4, t:"Чесний учень 📚", s:"Знайомі пастки – головне, що ти їх бачиш"},
+  {max:6, t:"Майстер прокрастинації ⏳", s:"Час повертати план із понеділка на сьогодні"},
+  {max:8, t:"Легенда підготовки 🦉", s:"Ти пройшов(-ла) майже все – і все одно тут"},
+  {max:9, t:"Повне бінго абітурієнта 🏆", s:"Кожен із нас тут був. Головне – дійти до НМТ"}
+];
+const KEY = "nmt-bingo-prep-v1";
+let marked = new Array(9).fill(false);
+try { const s = JSON.parse(localStorage.getItem(KEY)); if (Array.isArray(s) && s.length === 9) marked = s.map(Boolean); } catch(e) {}
+
+const board = document.getElementById("board");
+const rgrid = document.getElementById("rgrid");
+const cells = CELLS.map((txt, i) => {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "cell" + (i === SPECIAL ? " special" : "");
+  b.innerHTML = (i === SPECIAL ? '<span class="badge">★ особлива</span>' : "") + "<span>" + txt + "</span>";
+  b.addEventListener("click", () => { marked[i] = !marked[i]; render(true); });
+  board.appendChild(b);
+  return b;
+});
+const minis = CELLS.map(() => { const i = document.createElement("i"); rgrid.appendChild(i); return i; });
+
+let lastBingo = null;
+function render(fromClick) {
+  const count = marked.filter(Boolean).length;
+  const wins = LINES.filter(l => l.every(i => marked[i]));
+  const winSet = new Set(wins.flat());
+  cells.forEach((c, i) => {
+    c.classList.toggle("on", marked[i]);
+    c.classList.toggle("win", winSet.has(i));
+    c.setAttribute("aria-pressed", marked[i]);
+  });
+  minis.forEach((m, i) => { m.classList.toggle("on", marked[i]); m.classList.toggle("win", winSet.has(i)); });
+  document.getElementById("cnt").textContent = count + "/9";
+  document.getElementById("rcnt").textContent = count + "/9";
+  document.getElementById("bng").textContent = wins.length;
+  document.getElementById("rbng").textContent = wins.length;
+  const tier = TIERS.find(t => count <= t.max);
+  document.getElementById("rtitle").textContent = tier.t;
+  document.getElementById("rsub").textContent = tier.s;
+  if (fromClick && lastBingo !== null && wins.length > lastBingo) showToast();
+  lastBingo = wins.length;
+  try { localStorage.setItem(KEY, JSON.stringify(marked)); } catch(e) {}
+}
+let tt;
+function showToast() {
+  const t = document.getElementById("toast");
+  t.classList.add("show"); clearTimeout(tt);
+  tt = setTimeout(() => t.classList.remove("show"), 1600);
+}
+document.getElementById("clear").addEventListener("click", () => { marked.fill(false); render(false); });
+render(false);
+</script>
+</body>
+</html>
